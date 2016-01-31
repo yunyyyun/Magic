@@ -132,7 +132,7 @@ class GameViewController: GLKViewController {
         if shaderGLK==1{
             self.effect?.transform.projectionMatrix = projectionMatrix
             modelViewMatrix = GLKMatrix4MakeTranslation(0.0, 1.0, 0.0)
-            modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, rotation, 0.0, 1.0, 0.0)
+            modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, -rotation, 0.0, 1.0, 0.0)
             modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix)
             self.effect?.transform.modelviewMatrix = modelViewMatrix
         }
@@ -145,7 +145,7 @@ class GameViewController: GLKViewController {
             normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), nil)
             modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix)
         }
-        rotation += Float(self.timeSinceLastUpdate * 0.5)
+        rotation += 0.015//Float(self.timeSinceLastUpdate * 0.5)
     }
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
